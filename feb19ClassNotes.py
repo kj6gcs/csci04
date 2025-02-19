@@ -70,3 +70,5 @@ print("You typed:", inputTest) #Print the input
 #If you want to get a different type (such as a number), you need to specify.
 inputNum = float(input("Type in a number. ")) #This will turn the input into a float (num with a decimal point)
 print("Your number is:",inputNum)
+
+#end of file
