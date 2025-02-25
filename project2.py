@@ -5,7 +5,7 @@
  # CSCI-4: Intro to Programming
  # Spring 2025
  # Project Description: Program to convert metric measurements of height
- # and weight into their English equivilants.
+ # and weight into their English equivalants.
  #*************************************************************************
 
 #Write your code under this line*******************************************
