@@ -8,6 +8,8 @@
 #    #the code for the if (will run if the condition is true)
 
 #Let's make an if-statement that checks if a number is 5 or not
-num = 5     #put the number 5 into the num variable
+num = int(input("Type a number! "))     #put the number 5 into the num variable
+
 #Make an if-statement, print something if the number is 5
-if num =
+if num == 5:
+    print("The number is equal to 5!")
