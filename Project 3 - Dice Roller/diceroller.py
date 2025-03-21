@@ -11,45 +11,70 @@
  #*************************************************************************
 
 #Write your code under this line*******************************************
+
 #fist, the code to enable random:
 import random
 
 #let's welcome the players and explain the game.
 print("\n~Robby's Random Dice Roller~")
 print("\nFirst you'll pick which type of die to roll (D6, D8, 10. D12, D20, or D100).  Once you enter your")
-print("choice, as well as how many rolls you wish to make, a random 'roll' of your die will be made against")
+print("choice, as well as how many rolls you wish to make (1-5), a random 'roll' of your die will be made against")
 print("a roll of the same type and number of die by the computer.  The winner of the roll will be declared.\n")
+
+#defining the valid dice options
+valid_dice = [6, 8, 10, 12, 20, 100]
+
 
 #have player pick type of die to roll
 while True:
-    dieType = int(input("Enter the number of sides of your die/dice (enter '0' to end program): "))
+    while True:
+        try:
+            dieType = int(input("Enter the number of sides of your die/dice (enter '0' to end program): "))
 
-    #condition check to see if player wishes to continue or exit:
-    if dieType == 0:
-        print("\nThanks for playing!  See you next time!!!\n")
-        exit()
-    
-    #tell them the type of die they chose:
-    if dieType in [6, 8, 10, 12, 20, 100]:
-        print(f"\nYou have chosen to roll a D{dieType}\n")
-    #error message if player enters incorrect number of die sides:
-    elif dieType not in [6, 8, 10, 12, 20, 100]:
-        print("Invalid die type entry.  Please make a valid die type selection!")
-        continue
+        #condition check to see if player wishes to continue or exit:
+            if dieType == 0:
+                print("\nThanks for playing!  See you next time!!!\n")
+                exit() #exits the program if player enters 0 for die type
+        #error message if player enters incorrect number of die sides:    
+            elif dieType not in valid_dice:
+                print("Invalid die type entry.  Please choose from 6, 8, 10, 12, 20, or 100.")
+                continue #stays in loop if invalid entry.
+            break #exits loop if valid entry is made
+        except ValueError:
+            print("Invalid input.  Please enter a number.")
 
-    #if valid entry, move on to number of rolls:
-    break
+   #we're still in the main loop here.  if the player has made the correct die types, now we ask how many rolls:
+    while True:
+        try:
+            numRolls = int(input("Enter the number of rolls you wish to make (1-5):"))
+            if numRolls not in range(1,6): #generates error message if not within range
+                print("Invalid selection.  Please enter a number between 1 and 5.")
+                continue #keeps in loop to keep trying for valid selection
+            break #exits loop if valid number of rolls is entered by player
+        except ValueError: #generates error message if wrong input type
+            print("Invalid input.  You must enter a number between 1-5. ")
+            continue #stays in loop if invalid input, asks again for valid input
 
-while True:
-    numRolls = int(input("Enter the number of rolls want you to make (1-5): "))
-    #error message if player enters incorrect number of die sides:
+    #finally time to "roll" the dice!  these are the rolls for the player and the computer.
+    player_rolls = [random.randint(1, dieType) for _ in range(numRolls)]
+    computer_rolls = [random.randint(1, dieType) for _ in range(numRolls)]
 
-    #tell them how many rolls they've chosen to make
-    if numRolls in [1, 2, 3, 4, 5]:
-        print(f"\nYou are rolling a D{dieType} a total of {numRolls} times.  Good luck!\n")
-    elif numRolls not in [1, 2, 3, 4, 5]:
-        print("Invalid number of rolls.  Please enter a valid number of rolls!")
-        continue
+    #calculating total amount of roll values for the player and the computer:
+    player_total = sum(player_rolls)
+    computer_total = sum(computer_rolls)
 
-    #if valid entry, exit loop and calculate rolls:
-    break
+    #here we will display the results of the rolls for the player to see:
+    print(f"\nYou rolled: {player_rolls} (Total: {player_total})")
+    print(f"\nThe Computer rolled: {computer_rolls} (Total: {computer_total})\n")
+
+    #declare the victor:
+    if player_total > computer_total: #if player total is greater than computer's, player is the winner
+        print("\n👑You win!👑\n")
+        print("\\( ﾟヮﾟ)/🏆\n") #had to use a double back slash here to have a "proper" escape for the left side arm.  it would throw a warning
+                                #previously, and using "r" for a raw string led to the \n not working just being printed.
+    elif player_total < computer_total: #if less, then computer is winner
+        print("The Computer Wins!\n")
+        print("😭😭😭😭😭😭\n")
+    else:
+        print("👔It's a tie!👔\n")  #if equal, it's a tie!
+        print("v(^_^)v\n")
