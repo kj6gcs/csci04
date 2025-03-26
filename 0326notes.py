@@ -10,10 +10,17 @@
 
 def greet():    #this decides the name of the function, because of the def, we're creating it here.
     #this is indside the function because it is indented.
-    print("Hello there!")
+    name = input("What is your name? ") #name is a local variable here
+    #LOCAL VARIABLES only exist inside of the function where they were declared.
+    print("Hello", name)
     
 #When you start introducing functions, your program won't start with the first line of code.
 #Code inside a function will not run until you call it
 #You have to call the function from somewhere not inside the function itself
 print("Starting the program!")
+name = ""
 greet() #this will call the function.
+if name == "Robby":
+    print("!!!!!!!!!!!!!!!!!!!")
+greet()
+greet()
