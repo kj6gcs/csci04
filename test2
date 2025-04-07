@@ -1,0 +1,18 @@
+def encrypt(message, cipher):
+#Encrypts a string by shifting each character's ASCII value.
+    encrypted_message = ""
+    for char in message:
+    encrypted_char = chr(ord(char) + cipher)
+    encrypted_message += encrypted_char
+    return encrypted_message
+
+# Get input from the user
+message = input("Enter the message to encrypt: ")
+print("Original message:", message)
+cipher = int(input("Enter the cipher value (integer): "))
+
+# Encrypt the message
+encrypted_message = encrypt(message, cipher)
+
+# Print the encrypted message
+print("Encrypted message:", encrypted_message)
