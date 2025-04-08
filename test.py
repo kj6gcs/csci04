@@ -1,51 +1,37 @@
-def operatorValidation(num1, num2, operator):
-    """Performs the math operation and returns the equation as a formatted string."""
-    if operator == '+':  # Addition
-        return f"{num1} + {num2} = {num1 + num2}"
-    elif operator == '-':  # Subtraction
-        return f"{num1} - {num2} = {num1 - num2}"
-    elif operator == '*':  # Multiplication
-        return f"{num1} * {num2} = {num1 * num2}"
-    elif operator == '/':  # Division
-        if num2 == 0:
-            return "Are you trying to implode the universe? You can't divide by zero!"  # Fun Easter egg
-        return f"{num1} / {num2} = {num1 / num2}"
-    else:
-        return "You can only enter the following operators: +, -, *, /"
+import string
 
+# Get all printable characters (letters, digits, punctuation, whitespace)
+printable_chars = string.printable  # Contains 100 printable ASCII characters
 
-def calculations():
-    """Loops through user input and performs calculations until the user quits."""
-    while True:
-        num1 = input("Enter the first number or 'q' to quit: ")
-        if num1.lower() == 'q':
-            print("Exiting Program")
-            break
+# Encryption function for all printable characters
+def encrypt(text, shift):
+    result = ""
+    for char in text:
+        if char in printable_chars:
+            index = printable_chars.index(char)
+            shifted_index = (index + shift) % len(printable_chars)
+            result += printable_chars[shifted_index]
+        else:
+            result += char  # Leave non-printable chars untouched (just in case)
+    return result
 
-        num2 = input("Enter the second number or 'q' to quit: ")
-        if num2.lower() == 'q':
-            print("Exiting Program")
-            break
+# Decryption function
+def decrypt(text, shift):
+    return encrypt(text, -shift)
 
-        operator = input("Enter a valid operator (+, -, *, /) or 'q' to quit: ")
-        if operator.lower() == 'q':
-            print("Exiting Program")
-            break
+# Ask user what they want to do
+action = input("Would you like to (E)ncrypt or (D)ecrypt? ").strip().lower()
 
-        try:
-            num1 = float(num1)
-            num2 = float(num2)
-            result = operatorValidation(num1, num2, operator)
-            print(result)  # Prints the full equation
-        except ValueError:
-            print("Error: Please enter valid numbers.")
+# Get message and shift key
+message = input("Please type the string: ")
+shift = int(input("Please type the shift value you want to use (Cipher Key): "))
 
-# Welcome message
-print("\n>>> Simple Calculator <<<\n")
-print(">>> You will enter your first number, second number, and then the operator to use <<<\n")
-print(">>> Enter 'q' at any point to quit the program <<<\n")
-print(">>> Only +, -, *, and / are valid operators <<<\n")
-
-# Start calculator
-calculations()
-
+# Encrypt or decrypt
+if action == 'e':
+    encrypted = encrypt(message, shift)
+    print("Encrypted text:", encrypted)
+elif action == 'd':
+    decrypted = decrypt(message, shift)
+    print("Decrypted text:", decrypted)
+else:
+    print("Invalid option. Please enter 'E' or 'D'.")
