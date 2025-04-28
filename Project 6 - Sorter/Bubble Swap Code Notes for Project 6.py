@@ -1,4 +1,5 @@
-BubbleSort and Swap Function
+#BubbleSort and Swap Function
+
 def swap(leftIndex, rightIndex, list):
     print("before:",list)
     #For this to work, you need a way to remember what the left thing is BEFORE you destroy it
@@ -48,3 +49,20 @@ def main():
     
 #First: you need to call main!
 main()
+
+#******************************More notes on this from 04/28/2025 Class**********************************
+
+#Initialize function(list):
+def initialize(list):
+    #adds exactly 10 0's to our list
+    for num in range (0, 10): #must repeat exactly 10 times.
+        list.append(0)
+
+#main function: where the program starts:
+def main():
+    numList = []
+    initialize(numList)
+    print("Unsorted", numList)
+    bubbleSort(list)
+    print("Sorted:", numList)
+    #swap(0, 1, numeberList)
