@@ -1,0 +1,13 @@
+RED         = "\033[91m"
+GREEN       = "\033[92m"
+YELLOW      = "\033[93m"
+CYAN        = "\033[96m"
+BLUE        = "\033[34m"
+BRIGHTBLUE  = "\033[94m"
+BRIGHTRED   = "\033[91m"
+ORANGE      = "\033[38;5;208m"
+MAGENTA     = "\033[35m"
+ITALIC      = "\033[3m"     # Adding some "style" to it!
+BOLD        = "\033[1m"    # BOLD - for when you want your text to stand out!
+RESET       = "\033[0m"     # This has to be used after each time the text is altered to reset the text back to it's baseline.
+ULINE       = "\033[4m"     # Setting an underline style option.
