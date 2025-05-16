@@ -1,5 +1,7 @@
 {
-    "files.associations": {
-        "iostream": "cpp"
-    }
+  "files.associations": {
+    "iostream": "cpp",
+    "ostream": "cpp"
+  },
+  "terminal.integrated.defaultProfile.windows": "Command Prompt"
 }
